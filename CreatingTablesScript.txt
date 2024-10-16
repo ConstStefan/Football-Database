@@ -1,0 +1,68 @@
+create table contracts(
+contract_id number(3),
+salary_season number(10) constraint contracts_salary_ck CHECK(salary_season between 60000 and 200000000),
+constraint contracts_contract_id_pk PRIMARY KEY(contract_id)
+);
+
+
+
+
+Create table manager(
+manager_id number(3),
+fname varchar2(20) constraint manager_fname_nn NOT NULL,
+lname varchar2(20) constraint manager_lname_nn NOT NULL,
+age number(2) constraint manager_age_nn NOT NULL,
+contract_id number(3),  
+Constraint manager_manager_id PRIMARY KEY(manager_id),
+constraint manager_contract_id Foreign key(contract_id) references contracts(contract_id) ON DELETE CASCADE
+);
+
+
+
+
+Create table stadium(
+stadium_id number(2),
+name varchar2(20) CONSTRAINT stadium_name_nn NOT NULL,
+nr_seats number(6) CONSTRAINT stadium_nr_seats_ck CHECK(nr_seats between 1000 and 150000),
+Constraint stadium_stadium_id Primary key(stadium_id),
+Constraint stadium_name_uk UNIQUE(name)
+);
+
+
+
+
+
+Create table teams(
+team_id number(3) ,
+Team_name varchar2(20) CONSTRAINT teams_Team_name_nn NOT NULL,
+ABB varchar2(3) CONSTRAINT teams_abb_nn NOT NULL,
+team_city varchar2(30) CONSTRAINT teams_team_city_nn NOT NULL,
+stadium_id  number(2) UNIQUE NOT NULL,
+manager_id number(3) UNIQUE,
+Constraint teams_team_id_pk PRIMARY KEY(team_id),
+Constraint teams_team_name_uk UNIQUE (Team_name),
+Constraint teams_stadium_id_fk foreign key(stadium_id) references stadium(stadium_id) ON DELETE CASCADE,
+Constraint teams_manager_id_fk foreign key(manager_id) references manager(manager_id) 
+);
+
+
+
+
+
+
+Create table players(
+player_id number(3),
+first_name varchar2(20) CONSTRAINT players_first_name_nn NOT NULL,
+last_name varchar2(20) CONSTRAINT players_last_name_nn NOT NULL,
+age number(2) CONSTRAINT players_age_nn NOT NULL,
+pozitie varchar2(3) CONSTRAINT players_pozitie_nn NOT NULL,
+weight_kg number(3) CONSTRAINT players_weight_kg_ck CHECK(weight_kg>60),
+height_cm number(3) CONSTRAINT players_height_cm_ck CHECK(height_cm>155),
+nationality varchar2(20) CONSTRAINT players_nationality_nn NOT NULL,
+team_id number(3),
+contract_id number(3),
+kit_number number(2) CONSTRAINT player_kit_number_ck CHECK(kit_number between 1 and 99),
+Constraint players_player_id_pk PRIMARY KEY(player_id),
+constraint players_contract_id Foreign key(contract_id) references contracts(contract_id) ON DELETE CASCADE,
+Constraint players_team_id_fk Foreign Key(team_id) references teams(team_id) ON DELETE CASCADE
+);

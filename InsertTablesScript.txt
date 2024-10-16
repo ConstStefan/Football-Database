@@ -1,0 +1,48 @@
+--INSERT IN TABELA CONTRACTS
+
+
+INSERT INTO contracts VALUES (1,100000);
+INSERT INTO contracts VALUES (2,200000);
+INSERT INTO contracts VALUES (3,300000);
+INSERT INTO contracts VALUES (4,2000000);
+INSERT INTO contracts VALUES (5,1500000);
+
+
+--INSERT IN TABELA MANAGER
+
+
+INSERT INTO manager VALUES (1,'Carlo','Ancelotti',50,1);
+INSERT INTO manager VALUES (2,'Diego','Simeone',40,2);
+INSERT INTO manager VALUES (3,'Zinedine','Zidane',42,3);
+INSERT INTO manager VALUES (4,'Pep','Guardiola',44,4);
+INSERT INTO manager VALUES (5,'Alex','Ferguson',70,5);
+
+
+--INSERT IN TABELA STADIUM
+
+
+INSERT INTO stadium VALUES (10,'Bernabeu',81000);
+INSERT INTO stadium VALUES (20,'Etihad',51000);
+INSERT INTO stadium VALUES (30,'OldTrafford',74000);
+INSERT INTO stadium VALUES (40,'Metropolitano',67000);
+INSERT INTO stadium VALUES (50,'Wembley',90000);
+
+
+--INSERT IN TABALE TEAMS
+
+
+INSERT INTO teams VALUES (100,'Atletico Madrid','ATM','Madrid',40,2);
+INSERT INTO teams VALUES (110,'Real Madrid','RMA','Madrid',10,1);
+INSERT INTO teams VALUES (120,'Manchester City','MNC','Manchester',20,4);
+INSERT INTO teams VALUES (130,'Manchester United','MUN','Manchester',30,5);
+INSERT INTO teams VALUES (140,'Chelsea','CHE','London',50,3);
+
+
+--INSERT IN TABELA PLAYERS
+
+
+INSERT INTO players VALUES (1,'Karim','Benzema',35,'ST',81,187,'France',110,4,9);
+INSERT INTO players VALUES (2,'Joao','Felix',23,'ST',70,181,'Portugal',100,5,7);
+INSERT INTO players VALUES (3,'Erling','Haaland',22,'ST',88,194,'Norway',120,4,9);
+INSERT INTO players VALUES (4,'Jadon','Sancho',22,'LW',76,180,'England',130,5,25);
+INSERT INTO players VALUES (5,'Kai','Havertz',23,'CF',83,190,'Germany',140,5,29);
