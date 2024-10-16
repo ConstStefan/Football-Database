@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<style>
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./FontSansationLight/SansationLight.eot');
+	src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: rgb(22,22,22);
+}
+
+/* Style tab links */
+.tablink {
+	font-weight: bold;
+	font-family: 'SansationLight' !important;
+    background-color: #500;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #579;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-color: white;
+    text-align: center;
+}
+th, td {
+    padding: 15px;
+}
+
+.radiotext {
+    margin: 10px 10px 0px 0px;
+}
+
+
+</style>
+</head>
+<body>
+    <a href="teams"><button class="tablink">Teams</button></a>
+    <a href="players"><button class="tablink" style="background:rgb(70,130,180); color: white">Players</button></a>
+    <a href="contracts"><button class="tablink">Contracts</button></a>
+    <a href="stadium"><button class="tablink">Stadiums</button></a>
+    <a href="manager"><button class="tablink">Managers</button></a>
+
+
+<div id="Consilieri" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h3">Players</h1>
+  		<br>
+  		<table style="width:70%">
+		<br><br>
+  			<tr>
+    			<th><i><b>Player id</b></i> </th>
+    			<th><i><b>First name</b></i></th>
+    			<th><i><b>Last name</b></i></th>
+    			<th><i><b>Age</b></i></th>
+                <th><i><b>Pozitie</b></i></th>
+                <th><i><b>Weight</b></i></th>
+				<th><i><b>Height</b></i></th>
+                <th><i><b>Nationality</b></i></th>
+                <th><i><b>Team id</b></i></th>
+                <th><i><b>Contract id</b></i></th>
+                <th><i><b>Kit number</b></i></th>
+                <th><i><b>Action</b></i></th>
+
+			</tr>
+			{% for counselor in counselors %}
+  			<tr>
+    			<td>{{counselor["player_id"]}}</td>
+    			<td>{{counselor["first_name"]}}</td>
+    			<td>{{counselor["last_name"]}}</td>
+				<td>{{counselor["age"]}}</td>
+                <td>{{counselor["pozitie"]}}</td>
+                <td>{{counselor["weight_kg"]}}</td>
+                <td>{{counselor["height_cm"]}}</td>
+                <td>{{counselor["nationality"]}}</td>
+                <td>{{counselor["team_id"]}}</td>
+                <td>{{counselor["contract_id"]}}</td>
+                <td>{{counselor["kit_number"]}}</td>
+				<td>
+                <form class="was-validated" method="POST" action="/delPlayer">
+                  <button type="submit" name="player_id" value="{{counselor['player_id']}}" class="btn btn-primary">Sterge</button>
+                </form>
+          </td>
+			</tr>
+  			{% endfor %}
+		  </table>
+
+	  </center>
+
+
+  <div id="Consilieri1" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h4">Adauga jucator</h1>
+      <br><br><br>
+      <form class="was-validated" method="POST" action="/ADDplayer">
+	   <div class="row">
+
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer01">Player_id</label>
+            <input name="player_id" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex.>0" required>
+          </div>
+		 </br>
+
+        <div class="col-md-6 mb-3">
+            <label for="validationServer02">First name</label>
+            <input name="first_name" type="text" class="form-control is-valid" id="validationServer02" placeholder="ex. Carlo " required>
+          </div>
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer03">Last name</label>
+            <input name="last_name" type="text" class="form-control is-valid" id="validationServer03" placeholder="ex.Ancelotti" required>
+          </div>
+
+           <div class="col-md-6 mb-3">
+            <label for="validationServer04">Age</label>
+            <input name="age" type="number" class="form-control is-valid" id="validationServer04" placeholder="ex.50" required>
+          </div>
+
+             <div class="col-md-6 mb-3">
+            <label for="validationServer05">Pozitie</label>
+            <input name="pozitie" type="text" class="form-control is-valid" id="validationServer05" placeholder="ex.LW" required>
+          </div>
+
+             <div class="col-md-6 mb-3">
+            <label for="validationServer06">Weight(kg)</label>
+            <input name="weight_kg" type="number" class="form-control is-valid" id="validationServer06" placeholder="ex.>60" required>
+          </div>
+
+             <div class="col-md-6 mb-3">
+            <label for="validationServer07">Height(cm)</label>
+            <input name="height_cm" type="number" class="form-control is-valid" id="validationServer07" placeholder="ex.>155" required>
+          </div>
+
+             <div class="col-md-6 mb-3">
+            <label for="validationServer08">Nationality</label>
+            <input name="nationality" type="text" class="form-control is-valid" id="validationServer08" placeholder="ex.Franta" required>
+          </div>
+
+             <div class="col-md-6 mb-3">
+            <label for="validationServer09">Kit number</label>
+            <input name="kit_number" type="number" class="form-control is-valid" id="validationServer09" placeholder="ex.1-99" required>
+          </div>
+
+
+
+
+
+
+		 </div>
+		 </br>
+		<div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">Team name</label>
+            <select name="Team_name" class="custom-select d-block my-3">
+              <option value="">Alege echipa</option>
+              {% for com2 in player2 %}
+                <option value={{com2}}>{{com2}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+            <div class="col-md-6 mb-3">
+            <label for="validationServer01">Contract id</label>
+            <select name="contract_id" class="custom-select d-block my-3">
+              <option value="">Alege contract_id</option>
+              {% for com in player %}
+                <option value={{com}}>{{com}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+		   </div>
+
+
+
+
+        <button class="btn btn-primary" type="submit">Adauga jucator</button>
+      </form>
+
+  </center>
+  </div>
+</div>
+</body>
+</html>

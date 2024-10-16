@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+<style>
+
+@font-face {
+	font-family: 'SansationLight';
+	src: url('./FontSansationLight/SansationLight.eot');
+	src: local('SansationLight'), url('./FontSansationLight/SansationLight.woff') format('woff'), url('./FontSansationLight/SansationLight.ttf') format('truetype');
+}
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'SansationLight' !important;
+    background: rgb(22,22,22);
+}
+
+/* Style tab links */
+.tablink {
+	font-weight: bold;
+	font-family: 'SansationLight' !important;
+    background-color: #500;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 12px;
+    font-size: 17px;
+    width: 12.5%;
+}
+
+.tablink:hover {
+    background-color: #579;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+.tabcontent {
+    color: white;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-color: white;
+    text-align: center;
+}
+th, td {
+    padding: 15px;
+}
+
+.radiotext {
+    margin: 10px 10px 0px 0px;
+}
+
+
+</style>
+</head>
+<body>
+    <a href="teams"><button class="tablink">Teams</button></a>
+    <a href="stadium"><button class="tablink" style="background:rgb(70,130,180); color: white">Stadiums</button></a>
+    <a href="contracts"><button class="tablink">Contracts</button></a>
+    <a href="players"><button class="tablink">Players</button></a>
+    <a href="manager"><button class="tablink">Managers</button></a>
+
+
+<div id="Consilieri" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h3">Stadiums</h1>
+  		<br>
+  		<table style="width:70%">
+		<br><br>
+  			<tr>
+    			<th><i><b>Stadium id</b></i> </th>
+    			<th><i><b>Name</b></i></th>
+    			<th><i><b>Seats number</b></i></th>
+				<th><i><b>Action</b></i></th>
+			</tr>
+			{% for counselor in counselors %}
+  			<tr>
+    			<td>{{counselor["stadium_id"]}}</td>
+    			<td>{{counselor["name"]}}</td>
+				<td>{{counselor["nr_seats"]}}</td>
+				<td>
+                <form class="was-validated" method="POST" action="/delStadium">
+                  <button type="submit" name="stadium_id" value="{{counselor['stadium_id']}}" class="btn btn-primary">Sterge</button>
+                </form>
+          </td>
+			</tr>
+  			{% endfor %}
+		  </table>
+
+	  </center>
+
+
+  <div id="Consilieri1" class="tabcontent">
+	<center>
+		  <br>
+  		<h1 id="h4">Adauga stadion</h1>
+      <br><br><br>
+      <form class="was-validated" method="POST" action="/ADDstadium">
+	   <div class="row">
+       <!-- <div class="col-md-6 mb-3">
+            <label for="validationServer01">Location_id</label>
+            <input name="location_id" type="text" class="form-control is-valid" id="validationServer01" placeholder="ex. 111 " required>
+          </div>-->
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer01">Stadium id</label>
+            <input name="stadium_id" type="number" class="form-control is-valid" id="validationServer01" placeholder="ex.>0" required>
+          </div>
+		 </br>
+
+        <div class="col-md-6 mb-3">
+            <label for="validationServer02">Name</label>
+            <input name="name" type="text" class="form-control is-valid" id="validationServer02" placeholder="ex.Bernabeu " required>
+          </div>
+		  <div class="col-md-6 mb-3">
+            <label for="validationServer03">Seats number</label>
+            <input name="nr_seats" type="number" class="form-control is-valid" id="validationServer03" placeholder="ex.5000-150000" required>
+          </div>
+
+
+		 </div>
+		 </br>
+
+
+
+
+
+        <button class="btn btn-primary" type="submit">Adauga stadion</button>
+      </form>
+
+  </center>
+  </div>
+</div>
+</body>
+</html>
